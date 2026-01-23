@@ -1,4 +1,7 @@
 --Syntax--
+SELECT * FROM sakila. actor;
+ SELECT DISTINCT first_name from sakila.actor; ---distinct Removes duplicate values.
+-------
 SELECT * FROM SAKILA.actor;--Shows all actors in the database.
 SELECT COUNT(*) FROM SAKILA.category; --counts all rows.
 SHOW TABLES FROM sakila; --Lists all tables in the sakila database
@@ -6,6 +9,10 @@ SELECT COUNT(DISTINCT TITLE) FROM SAKILA.FILM; --counts unique titles.
 SELECT COUNT(TITLE) FROM SAKILA.FILM; --counts all titles, even duplicates
 SELECT first_name, last_name FROM SAKILA.FILM LIMIT 50;--LIMIT shows only first 50 rows.
 SHOW COLUMNS FROM SAKILA.FILM; --Shows column names, types, and details.
+-----is null
+ select * from sakila.film where original_language_id is null;
+ select count(*) from sakila.film ;
+ select * from sakila.film;
 
 --Filtering WITH WHERE
 

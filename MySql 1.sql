@@ -23,13 +23,13 @@ ADD Email VARCHAR(100);--(adding a column)
 --
 SELECT * FROM Student_table;
 ALTER TABLE Student_table
-RENAME COLUMN Email TO email_id;
+RENAME COLUMN Email TO email_id; -- rename
 ---
 ALTER TABLE Student_table
 MODIFY Name VARCHAR(100);--Modify the column size
 ---
-DROP TABLE IF EXISTS Person;---drop means delete
-CREATE TABLE students(
+DROP TABLE IF EXISTS Students;---drop means delete
+CREATE TABLE Students(
  ID INT NOT NULL UNIQUE,
  LastName VARCHAR(55) NOT NULL,
  FirstName VARCHAR(55) NOT NULL,

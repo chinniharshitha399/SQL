@@ -103,7 +103,7 @@ WHERE return_date IS NOT NULL;
 
 Numerical & Date Built-in Functions
 -- built-in functions for numeric and date data types, including:-FLOOR;CEIL;RAND;MOD;ROUND;POWER;DATEDIFF;MONTHNAME;DAY;YEAR;YEARWEEK
-
+--The CEIL() function returns the smallest integer value that is bigger than or equal to a number.
 ---CASTING --MODIFIES SCHEMA
 ALTER TABLE sakila.payment   ---Adds a new column amount_str 
 ADD COLUMN amount_str VARCHAR(20);

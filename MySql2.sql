@@ -1,4 +1,4 @@
---Syntax--
+--Syntax--                                                                                                                                     01/22/2026
 SELECT * FROM sakila. actor;
  SELECT DISTINCT first_name from sakila.actor; ---distinct Removes duplicate values.
 -------

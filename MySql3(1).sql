@@ -44,7 +44,8 @@ ________________________________________________________________________________
 ---sakila.actor a → real table with actor names
 ---( ... ) fa → derived table (film counts)
 --JOIN → combine both tables
---ON a.actor_id = fa.actor_id → match same actor
+--fa → This is the mini table we just made (film counts).
+--ON a.actor_id = fa.actor_id → Match each actor in the main table with their film count from the derived table.
 
 SELECT a.actor_id, a.first_name, a.last_name, fa.film_count
 FROM sakila.actor a
@@ -54,8 +55,12 @@ FROM sakila.film_actor                                              | ---"Derive
 GROUP BY actor_id                                                   |--- show only those actors who acted in MORE THAN 10 films"
 HAVING COUNT(film_id) > 10                                     ______                                       
 ) fa ON a.actor_id = fa.actor_id;
+
+--order: First, count how many films each actor acted in (derived table).--Keep only actors with more than 10 films.
+--Then, join with the main actor table to get their full details.
 ___________________________________
 ----Top 5 customers by total payment
+  
 SELECT customer_id, total_spent
 FROM (
 SELECT customer_id, SUM(amount) AS total_spent
@@ -70,8 +75,7 @@ __________________________________________
 --SELECT * FROM grouped_customers       __
 --WHERE group_label = 'Group N-Z';      __|--Takes the derived table, Shows only customers whose last name starts with N–Z
   
-  SELECT *
-FROM (
+  SELECT * FROM (
     SELECT last_name,                                                                          _____
            CASE                                                                                    |
                WHEN LEFT(last_name, 1) BETWEEN 'A' AND 'M' THEN 'Group A-M'                        |                   
@@ -86,6 +90,7 @@ ________________________________________________________________________________
 ----When to use Subqueries-:- You need temporary results to build your main query ,-- You are comparing against aggregate values
   
 --customers who paid MORE than the average payment  
+  
 SELECT customer_id, amount
 FROM sakila.payment
 WHERE amount > (
@@ -103,7 +108,8 @@ ________________________________________________________________________________
 ---Correlated Subqueries:It's subquery that uses values from the outer query and executes once for each row of the outer query.
 --sakila.film_actor table=This table connects movies and actors, One row = one actor in one movie
 --fa.film_id → from the inner query , f.film_id → from the outer query
-  
+
+--We are listing all the films in the sakila.film table and counting how many actors acted in each film.
 SELECT title,
 (SELECT COUNT(*)
 FROM sakila.film_actor fa
@@ -116,7 +122,7 @@ Sakila.payment: table that keeps track of all payments customers have made.
 Each payment has: payment_id , customer_id , amount ,payment_date
   
 SELECT payment_id, customer_id, amount, payment_date
-FROM sakila.payment p1                 ---tries to get the amount from sakila.customer, but usually, the customer table doesn’t have an amount column, so this might give an error.
+FROM sakila.payment p1                 ---tries to get the amount from sakila.payment
 WHERE amount > (
 SELECT AVG(amount)
 FROM sakila.payment p2
@@ -142,7 +148,7 @@ imagine you have two tables in your database:
 --language – has the languages of the movies.
   
 #INNER JOIN 
--------Give me a list of all movies along with their language names, but only if the movie has a valid language in the language table.---
+------- Give me a list of all movies along with their language names,but only if the movie has a valid language in the language table.---
   
 --SELECT f.title, l.name AS language
      --f.title → we are picking the movie title from the film table (we call it f).
@@ -172,7 +178,11 @@ LEFT JOIN sakila.category c ON fc.category_id = c.category_id;  --This brings in
 SELECT c.customer_id, c.first_name, r.rental_id
 FROM sakila.customer c
 LEFT JOIN sakila.rental r ON c.customer_id = r.customer_id;          ---Joins the rental table, which lists which movies each customer rented.All customers will appear, even if they never rented a movie.
-
+--Example Result:
+--customer_id	first_name	rental_id
+1           	John	       101
+2	            Mary	       NULL
+3	            Alex	       105
   __________________________________________________________________________________________________________________________________________________________________________________________________
 
 #fullouter join           (LEFT JOIN + RIGHT JOIN + UNION)

@@ -241,10 +241,44 @@ JOIN sakila.staff_demo s2
   AND s1.staff_id <> s2.staff_id          --Make sure we don’t pair someone with themselves.
 ORDER BY s1.store_id, s1.staff_id;        --Sort the results first by store, then by staff_1 ID.
   ______________________________________________________________________________________________________________________________________________________________________________________________________________
+  #where exists / insersect-INTERSECT returns common rows between two queries / inner join 
+--WHERE EXISTS checks whether a matching row exists in a subquery.
+--It returns rows from the outer query only when the condition is true.
+--It’s efficient because it stops searching after the first match and is useful when we only want to verify existence, not retrieve data.”
+--EXISTS checks row-by-row condition 
   
+SELECT DISTINCT p.customer_id,p.rental_id                      ---A customer can make multiple payments . DISTINCT removes duplicate rows
+FROM sakila.payment p     --We look at each payment row one by one.
+WHERE EXISTS (
+    SELECT 1
+    FROM sakila.rental r
+    WHERE r.customer_id = p.customer_id             ---For the current payment’s customer_id,check if the same customer_id exists in the rental table
+);
+__________________________________________________________________________________
+  --1st Select
+---We start with customer
+--We try to join staff
+--But 1 = 0 → join always fails
+--So no staff rows match
+--s.email → NULL for every row
+  _____________
+  2nd select
+  --Start with staff
+--LEFT JOIN customer (no match again)
+--Join fails every time
+--Staff rows stay
+--Customer columns become NULL
+s.email → REAL staff emails ✅
 
+---------  
+  SELECT s.email FROM sakila.customer c
+LEFT JOIN sakila.staff s ON 1 = 0             --1 = 0 is ALWAYS FALSE. So this join condition never matches anything.
 
+UNION          --UNION = combine + remove duplicates
+SELECT s.email FROM sakila.staff s
+LEFT JOIN sakila.customer c ON 1 = 0;
 
+________________________________________________________________________________________________________________________________________________________________________________________________
 
 
 

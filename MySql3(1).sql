@@ -142,7 +142,7 @@ The query checks each payment:
 150 → greater than 100 → include!    
 --payment_id 103 will show up for customer 1.
 ____________________________________________________________________________________________________________________________________________________________________________________________________________
-#JOINS 
+#JOINS                                                                                                                                                           29/01/2026
 imagine you have two tables in your database:
 --film – has all the movies.
 --language – has the languages of the movies.
@@ -169,8 +169,9 @@ ________________________________________________________________________________
   #LEFT JOIN : A LEFT JOIN is a type of join that keeps all rows from the left table, even if there is no matching row in the right table.
   --If there’s no match in the right table, SQL fills it with NULL
 ------
+---sakila.film_category -- bridge table
 SELECT f.title, c.name AS category
-FROM sakila.film f            ---left table
+FROM sakila.film f ---left table
 LEFT JOIN sakila.film_category fc ON f.film_id = fc.film_id     --This joins the film_category table, which tells us which film belongs to which category.
                                                                 --If a film doesn’t have a category, it still appears in the result, with NULL for category info.
 LEFT JOIN sakila.category c ON fc.category_id = c.category_id;  --This brings in the category name from the category table.
@@ -190,12 +191,12 @@ LEFT JOIN sakila.rental r ON c.customer_id = r.customer_id;          ---Joins th
 ---
 SELECT a.actor_id, a.first_name, fa.film_id                            -----|
 FROM sakila.actor a                                                         |--Take all rows from the left table (actor) and match with the right table (film_actor). 
-LEFT JOIN sakila.film_actor fa ON a.actor_id = fa.actor_id             -----|  If there’s no match, still keep the left table row, and fill the right side with NULL
+LEFT JOIN sakila.film_actor fa ON a.actor_id = fa.actor_id             -----|  If there’s no match, still keep the left table row, and fithe rll ight side with NULL
 
-UNION    --UNION combines the two results and removes duplicates.This way, we get all actors and films together, like a FULL OUTER JOIN.
+UNION    --UNION combines the two results and film_id
+FROM sakila.actor aremoves duplicates.This way, we get all actors and films together, like a FULL OUTER JOIN.
 
-SELECT a.actor_id, a.first_name, fa.film_id
-FROM sakila.actor a
+SELECT a.actor_id, a.first_name, fa.
 RIGHT JOIN sakila.film_actor fa ON a.actor_id = fa.actor_id;
 
   ____________________________________________________________
@@ -220,7 +221,7 @@ ________________________________________________________________________________
 SELECT s1.staff_id, s2.staff_id, s1.store_id           --Finally, we pick the columns we want to see:Staff from s1   ,Staff from s2,  The store they work at
 FROM sakila.staff s1                                  ----sakila.staff s1 and sakila.staff s2: We are using the same table staff twice.
 JOIN sakila.staff s2 ON s1.store_id = s2.store_id      ---Match every staff in s1 with every staff in s2 who works at the same store
-WHERE s1.staff_id <> s2.staff_id;                      --This prevents a staff member from matching with themselves. We only want pairs of different staff in the same store.
+WHERE s1.staff_id <> s2.staff_id; --(not equal too)                     --This prevents a staff member from matching with themselves. We only want pairs of different staff in the same store.
 ________________________________________________________________
   select * from sakila.staff;  --staff table
   ________________________________________________________________________________________________________________________________________________________________________
@@ -282,6 +283,7 @@ ________________________________________________________________________________
 s.email → REAL staff emails ✅
 
 ---------  
+  --we are about to join the tables  but the  condition is failing.
   SELECT s.email FROM sakila.customer c
 LEFT JOIN sakila.staff s ON 1 = 0             --1 = 0 is ALWAYS FALSE. So this join condition never matches anything.
 

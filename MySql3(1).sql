@@ -1,3 +1,4 @@
+                                                                                                                                                                                                          26/01/2026
 --Subqueries -- A subquery is a query written inside another query. The inner query runs first and its result is used by the outer query.
 --Inner query gets all address IDs from the customer table.
 --Outer query finds first and last names of customers whose address_id is in the list returned by the subquery.”

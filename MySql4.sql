@@ -155,8 +155,7 @@ imagine you have two tables in your database:
      --l.name AS language → we are picking the language name from the language table (we call it l) and giving it a column name language.
 
 --FROM sakila.film f--This tells MySQL: “Start with the film table.”
---INNER JOIN sakila.language l ON f.language_id = l.language_id;
-     --INNER JOIN sakila.language l → we are joining the language table, and calling it l.
+--INNER JOIN sakila.language l → we are joining the language table, and calling it l.
      --ON f.language_id = l.language_id → the “matching rule”: match the language_id in the film table with language_id in the language table.
   
 SELECT f.title, l.name AS language

@@ -26,8 +26,9 @@ IN Into procedure	                 Pass data to the procedure	                  
 OUT Out of procedure	             Return data from the procedure	                                             Total payment amount of customer
 INOUT Both ways	                    Pass data in and get modified value back	                                   Start balance sent in, procedure adds deposits, returns new balance
 
----DYNAMIC SQL PROCEDURE: IT allows us to create and run SQL queries dynamically at runtime. It’s useful when we don’t know the table, column, or filter condition in advance. 
-For example, a procedure can query any table or any column based on input parameters, making it flexible and reusable.
+---DYNAMIC SQL PROCEDURE: IT allows us to create and run SQL queries dynamically.
+ --It’s useful when we don’t know the table, column, or filter condition in advance. 
+--For example, a procedure can query any table or any column based on input parameters, making it flexible and reusable.
 
 
 

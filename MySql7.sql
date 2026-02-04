@@ -4,6 +4,7 @@
 --It helps to simplify complex logic, improves performance since it’s precompiled, and enhances security because users can run the procedure without direct table access. , Reusability (by using CALL funtion )
 --For example, I can create a procedure to fetch all payments of a customer and call it whenever needed
  --disadvantage of stored procedure is that it can be executed nowhere except in the database and occupies more memory in the database server
+--STORE PROCEDURE ARE STORED IN META
 
 --DELIMITER: end-of-statement symbol //
 Syntax:
@@ -29,6 +30,7 @@ INOUT Both ways	                    Pass data in and get modified value back	   
 ---DYNAMIC SQL PROCEDURE: IT allows us to create and run SQL queries dynamically.
  --It’s useful when we don’t know the table, column, or filter condition in advance. 
 --For example, a procedure can query any table or any column based on input parameters, making it flexible and reusable.
+
 
 
 

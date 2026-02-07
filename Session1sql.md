@@ -4,6 +4,11 @@ Data Base: A database is an organized collection of data, stored and retrieved d
 DBMS: It stores the data in a file format. DBMS is used to connect to the database servers.
 RDBMS: It is a type of software that is used to maintain and manage the database by providing the 2 feautures. a. authorization, b. Security
 Schema: A schema is a logical structure inside a database used to organize and manage database objects efficiently. Objects such as tables, views, indexes, functions, and procedures.
+Database Hierarchy
+Server
+ └── Database
+      └── Schema
+           └── Tables
 ----------------------------------------------------------------------------------------------------------------------------------------------
 Structured data is highly organised and stored in a fixed schema, usually in rows and columns. It fits well into relational databases and is easy to query using SQL.
 Ex: customer tables, employee records, and transaction data stored in databases like MySQL or Oracle.
@@ -20,6 +25,19 @@ SQL COMMANDS: SQL commands are the instructions. it is used to communicate with 
  3. DML (Data Manipulation Language): Used to modify the database. (INSERT, UPDATE, DELETE)
  4. DCL (Data Control Language): Used to grant & revoke permissions. (GRANT, REVOKE)
  5. TCL (Transaction Control Language): Used to manage transactions. (COMMIT, ROLLBACK, START TRANSACTIONS, SAVEPOINT)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DELETE vs TRUNCATE vs DROP
+
+DELETE: Removes specific rows using WHERE clause
+Can be rolled back
+
+TRUNCATE:Removes all data
+Table structure remains
+Faster, cannot be rolled back
+
+DROP : Deletes the entire table (structure + data)
+
+
 ---------------------------------------------
 INSERT INTO:  Statement is used to add new rows of data to a table in the database.
 TRUNCATE: Command is used to delete complete data from an existing table.
@@ -54,4 +72,5 @@ CASCADE: when you delete or update in a parent table, CASCADE makes matching row
 cascade type:
 on delete cascade: if a parent row is deleted, all child rows that reference it are also deleted automatically.
 on update cascade: if a parent key value is updated. The foreign key values in child rows are updated to the new value.
+______________________________________________________________________________________________________________________________________________________
 

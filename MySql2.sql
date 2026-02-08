@@ -44,6 +44,8 @@ ORDER BY rental_rate DESC = sort highest to lowest.
   SELECT * FROM SAKILA.FILM WHERE RATING = 'PG' OR rental_duration = 4 ORDER BY RENTAL_RATE DESC; --either condition can be true.
 
 ----FILTERING USING NOT
+--<>  : Best for single value comparison
+--NOT IN: Best when multiple values need exclusion
 
 SELECT * FROM SAKILA.FILM
 WHERE NOT RENTAL_DURATION NOT IN (0,7,3)

@@ -91,6 +91,12 @@ WHERE first_name BETWEEN 'A' AND 'D'
 GROUP BY first_name
 HAVING COUNT(*) > 1;  -- Only shows names with more than 1 occurrence.
 
+
+---- SQL is written like:
+-- SELECT ... FROM ... WHERE ... GROUP BY ... HAVING ... ORDER BY ... LIMIT ...
+-- But executed roughly like:
+-- FROM -> JOIN -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY -> LIMIT
+
 -------------------------
 Keyword	Meaning
 SELECT *  --     	Get all columns
